@@ -16,7 +16,6 @@ app.listen(app.get('port'), function(){
 })
 
 app.post('/entries', function(req, res) {
-	console.log('req.body is: ', req);
 	var reqQs = [];
 	if(req.body.questions.length){
 		req.body.questions.forEach(function(q){
