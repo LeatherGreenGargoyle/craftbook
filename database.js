@@ -11,8 +11,7 @@ var entrySchema = new mongoose.Schema({
 	questions: [{text: String}],
 	notes: String,
 	mySolution: String,
-	process: String,
-	mnemonic: String
+	process: String
 });
 
 var Entry = mongoose.model('Entry', entrySchema);

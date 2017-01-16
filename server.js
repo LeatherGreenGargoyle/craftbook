@@ -39,8 +39,7 @@ app.post('/entries', function(req, res) {
 		questions: reqQs,
 		notes: req.body.notes,
 		mySolution: req.body.mySolution,
-		process: req.body.process,
-		mnemonic: req.body.mnemonic
+		process: req.body.process
 	}, function(err, Entry){
 		if(err){
 			res.send(err);
