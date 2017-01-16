@@ -27,7 +27,7 @@ app.get('/entries', function(req, res){
 
 app.post('/entries', function(req, res) {
 	var reqQs = [];
-	if(req.body.questions.length){
+	if(req.body.questions && req.body.questions.length){
 		req.body.questions.forEach(function(q){
 			reqQs.push(q);
 		});

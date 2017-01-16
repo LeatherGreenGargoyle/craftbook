@@ -12,5 +12,15 @@ craftApp.config(function($stateProvider, $urlRouterProvider) {
 });
 
 craftApp.controller('newEntryCtrl', ['$scope', '$http', function($scope, $http) {
-	$scope.test = 'testing $scope of newEntry';
+
+	$scope.saveEntry = function() {
+		$http.post('/entries', $scope.entryObj)
+			.then(
+				function(data) {
+					console.log(data);
+				},
+				function(err) {
+					console.log(err);
+				});
+	}
 }]);
