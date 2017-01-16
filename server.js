@@ -15,6 +15,16 @@ app.listen(app.get('port'), function(){
 	console.log('App listening on port:', app.get('port'));
 })
 
+app.get('/entries', function(req, res){
+	db.Entry.find(function(err, data) {
+		if(err) {
+			res.send(err);
+		} else {
+			res.json(data);
+		}
+	});
+});
+
 app.post('/entries', function(req, res) {
 	var reqQs = [];
 	if(req.body.questions.length){
