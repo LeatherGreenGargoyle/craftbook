@@ -14,3 +14,35 @@ app.use(bodyParser.json());
 app.listen(app.get('port'), function(){
 	console.log('App listening on port:', app.get('port'));
 })
+
+app.post('/entries', function(req, res) {
+	console.log('req.body is: ', req);
+	var reqQs = [];
+	if(req.body.questions.length){
+		req.body.questions.forEach(function(q){
+			reqQs.push(q);
+		});
+	}
+
+	db.Entry.create({
+		challenge: req.body.challenge,
+		initialThoughts: req.body.initialThoughts,
+		questions: reqQs,
+		notes: req.body.notes,
+		mySolution: req.body.mySolution,
+		process: req.body.process,
+		mnemonic: req.body.mnemonic
+	}, function(err, Entry){
+		if(err){
+			res.send(err);
+		} else {
+			db.Entry.find(function(err, data){
+				if(err){
+					res.send(err);
+				} else {
+					res.json(data);
+				}
+			})
+		}
+	})
+});
