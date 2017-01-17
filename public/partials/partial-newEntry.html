@@ -1,30 +1,46 @@
-<div id='newEntry'>
+<div id='newEntry' layout="column" layout-align="center center">
 
-	<div>
-		<p>What's the problem you're trying to solve?</p>
-		<textarea type='text' ng-model='entryObj.challenge'></textarea>
+	<h2>Let's Tackle a Challenge!</h2>
+
+	<div class='inputContainer'>
+    <md-input-container layout>
+      <label>What's the problem you're trying to solve?</label>
+      <textarea ng-model="entryObj.challenge" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
 	</div>
-	<div>
-		<p>What are your initial reactions to the problem? Unload your thinking here:</p>
-		<textarea type='text' ng-model='entryObj.initialThoughts'></textarea>
-	</div>
-	<!--<div>
-		<p>Any sub-problems related to the one you just posed? Let's take these one at a time.</p>
-		<textarea type='text' ng-model='questions'>
-	</div>-->
-	<div>
-		<p>After browsing for a solution, what are your thoughts now?</p>
-		<textarea type='text' ng-model='entryObj.notes'></textarea>
-	</div>
-	<div>
-		<p>So what solution are you going to try?</p>
-		<textarea type='text' ng-model='entryObj.mySolution'></textarea>
-	</div>
-	<div>
-		<p>What thought process can you take next time, in order to arrive at this solution?</p>
-		<textarea type='text' ng-model='entryObj.process'></textarea>
+	<!-- </div> -->
+	<div class='inputContainer'>
+    <md-input-container layout>
+      <label>What are your initial reactions to the problem? Unload your thinking here:</label>
+      <textarea ng-model="entryObj.initialThoughts" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
 	</div>
 
-	<button type='submit' ng-click='saveEntry()'>Save Entry</button>
+  <div class='inputContainer'>
+    <p>At this point, it's useful to ask, is there a related </p> <md-button class='md-raised' type='submit' ng-click='newEntryTab()'>sub-question?</md-button>
+  </div>
+
+	<div class='inputContainer'>
+    <md-input-container layout>
+      <label>Any post-breakdown notes?</label>
+      <textarea ng-model="entryObj.notes" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+	</div>
+
+	<div class='inputContainer'>
+    <md-input-container layout>
+      <label>What does your solution look like?</label>
+      <textarea ng-model="entryObj.mySolution" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+	</div>
+
+	<div class='inputContainer'>
+    <md-input-container layout>
+      <label>Pick one big takeaway from this problem:</label>
+      <textarea ng-model="entryObj.process" rows="5" md-select-on-focus></textarea>
+    </md-input-container>
+	</div>
+
+	<md-button class="md-raised" type='submit' ng-click='saveEntry()'>Save Entry</md-button>
 
 </div>

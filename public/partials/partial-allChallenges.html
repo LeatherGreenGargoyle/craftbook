@@ -1,32 +1,35 @@
-<div id='allChallenges'>
-		<ul>
-			<li ng-repeat='entry in data' ng-click='showEntry(entry)'>{{entry.challenge}}</li>
-		</ul>
+<div id='allChallenges' layout='column' layout-align='center center'>
+		<div>
+			<md-list id='challengesList' flex>
+				<h2 class="md-no-sticky">Saved Challenge Entries:</h2>
+				<md-list-item ng-repeat='entry in data' ng-click='showEntry(entry)'>{{entry.challenge}}</md-list-item>
+			</md-list flex>	
+		</div>
 
 	<div id='currentEntry'>
-		<h3>Challenge: </h3>
-			<div>
+		<h3> Selected Challenge: </h3>
+			<div class='entryAttr'>
 				{{currentEntry.challenge}}
 			</div>
 
 		<h3>Your initial thought process: </h3>
-			<div>
+			<div class='entryAttr'>
 				{{currentEntry.initialThoughts}}
 			</div>
 
 
 		<h3>Your notes: </h3>
-			<div>
+			<div class='entryAttr'>
 				{{currentEntry.notes}}
 			</div>
 
 		<h3>Your solution: </h3>
-			<div>
+			<div class='entryAttr'>
 				{{currentEntry.mySolution}}
 			</div>
 
-		<h3>Your solution process: </h3>
-			<div>
+		<h3>The big takeaway: </h3>
+			<div class='entryAttr'>
 				{{currentEntry.process}}
 			</div>
 

@@ -1,4 +1,4 @@
-var craftApp = angular.module('craftApp',['ui.router']);
+var craftApp = angular.module('craftApp',['ui.router', 'ngMaterial']);
 
 craftApp.config(function($stateProvider, $urlRouterProvider) {
 	$urlRouterProvider.otherwise('/newEntry');
@@ -32,6 +32,10 @@ craftApp.controller('newEntryCtrl', ['$scope', '$http', function($scope, $http) 
 				function(err) {
 					console.log(err);
 				});
+	}
+
+	$scope.newEntryTab = function() {
+		window.open('/#/newEntry', '_blank');
 	}
 }]);
 
@@ -69,5 +73,4 @@ craftApp.controller('randomChallengeCtrl', ['$scope', '$http', function($scope, 
 	$scope.revealAnswer = function() {
 		$scope.answer = $scope.challenge.mySolution;
 	}
-
 }]);
