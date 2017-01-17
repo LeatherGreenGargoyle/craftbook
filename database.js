@@ -14,6 +14,13 @@ var entrySchema = new mongoose.Schema({
 	process: String
 });
 
+// var dailySummarySchema = new mongoose.Schema({
+// 	date: String,
+// 	yesterday: String,
+// 	TIL: String,
+// 	errors: String
+// });
+
 var Entry = mongoose.model('Entry', entrySchema);
 
 exports.Entry = Entry;

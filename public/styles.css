@@ -1,0 +1,10 @@
+input[type=text]{
+	border: 1px dotted #999;
+	width: 700px;
+	height: 20px;
+}
+
+textarea {
+	height: 50px;
+	width: 500px;
+}

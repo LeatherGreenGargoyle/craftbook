@@ -5,6 +5,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js'></script>
 	<script src='core.js'></script>
+	<link href="styles.css" rel="stylesheet">
 	<title>CraftBook</title>
 </head>
 
@@ -12,10 +13,9 @@
 
 <h1>Welcome to CraftBook</h1>
 <nav>
-	<ul>
-		<li><a ui-sref='allChallenges'>All Challenges</a></li>
-		<li><a ui-sref='newEntry'>New Challenge</a></li>
-	</ul>
+		<span><a ui-sref='allChallenges'>All Challenges | </a></span>
+		<span><a ui-sref='newEntry'>New Challenge | </a></span>
+		<span><a ui-sref='randomChallenge'>Random Challenge</a></span>
 </nav>
 	
 <div ui-view></div>

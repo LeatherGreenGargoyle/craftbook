@@ -2,27 +2,27 @@
 
 	<div>
 		<p>What's the problem you're trying to solve?</p>
-		<input type='text' ng-model='entryObj.challenge'>
+		<textarea type='text' ng-model='entryObj.challenge'></textarea>
 	</div>
 	<div>
 		<p>What are your initial reactions to the problem? Unload your thinking here:</p>
-		<input type='text' ng-model='entryObj.initialThoughts'>
+		<textarea type='text' ng-model='entryObj.initialThoughts'></textarea>
 	</div>
 	<!--<div>
 		<p>Any sub-problems related to the one you just posed? Let's take these one at a time.</p>
-		<input type='text' ng-model='questions'>
+		<textarea type='text' ng-model='questions'>
 	</div>-->
 	<div>
 		<p>After browsing for a solution, what are your thoughts now?</p>
-		<input type='text' ng-model='entryObj.notes'>
+		<textarea type='text' ng-model='entryObj.notes'></textarea>
 	</div>
 	<div>
 		<p>So what solution are you going to try?</p>
-		<input type='text' ng-model='entryObj.mySolution'>
+		<textarea type='text' ng-model='entryObj.mySolution'></textarea>
 	</div>
 	<div>
 		<p>What thought process can you take next time, in order to arrive at this solution?</p>
-		<input type='text' ng-model='entryObj.process'>
+		<textarea type='text' ng-model='entryObj.process'></textarea>
 	</div>
 
 	<button type='submit' ng-click='saveEntry()'>Save Entry</button>

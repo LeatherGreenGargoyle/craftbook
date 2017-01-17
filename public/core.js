@@ -13,6 +13,11 @@ craftApp.config(function($stateProvider, $urlRouterProvider) {
 			url:'/allChallenges',
 			templateUrl:'./partials/partial-allChallenges.html',
 			controller: 'allChallengesCtrl'
+		})
+		.state('randomChallenge', {
+			url: '/randomChallenge',
+			templateUrl:'./partials/partial-randomChallenge.html',
+			controller: 'randomChallengeCtrl'
 		});
 });
 
@@ -31,6 +36,7 @@ craftApp.controller('newEntryCtrl', ['$scope', '$http', function($scope, $http) 
 }]);
 
 craftApp.controller('allChallengesCtrl', ['$scope', '$http', function($scope, $http) {
+	
 	$http.get('/entries').then(
 	function(data) {
 		$scope.data = data.data;
@@ -46,3 +52,15 @@ craftApp.controller('allChallengesCtrl', ['$scope', '$http', function($scope, $h
 	
 }]);
 
+craftApp.controller('randomChallengeCtrl', ['$scope', '$http', function($scope, $http) {
+	$scope.challenge;
+	$http.get('/entries').then(
+	function(data) {
+		var randomInd = Math.floor(Math.random() * (data.data.length - 1));
+		$scope.challenge = data.data[randomInd];
+	},
+	function(err) {
+		console.log(err);
+	});
+
+}]);
