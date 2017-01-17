@@ -43,23 +43,19 @@ app.post('/signup', function(req, res) {
 
 app.post('/login', function(req, res) {
 	console.log('login hit, req.body is: ', req.body);
-	db.User.find({username: req.body.username}, function(err, result) {
+	db.User.findOne({username: req.body.username}, function(err, result) {
 		if(err){
 			console.log('login error');
 			res.send(err);
 		} else {
 			console.log('user was found: ', result);
-			if(result.length > 0){
-				if(result[0].password === req.body.password) {
-					// res.json(User);
-					console.log('password match');
-					// res.redirect(200, '/allChallenges');
-					res.json(result);
-				} else {
-					console.log('password doesn\'t match');
-				}
+			if(result.password === req.body.password) {
+				// res.json(User);
+				console.log('password match');
+				// res.redirect(200, '/allChallenges');
+				res.json(result);
 			} else {
-				res.send(404,'No user/password match');
+				console.log('password doesn\'t match');
 			}
 		}
 	});

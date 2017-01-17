@@ -31,6 +31,11 @@ craftApp.config(function($stateProvider, $urlRouterProvider) {
 		});
 });
 
+// craftApp.factory('currentUser', ['$scope', function($scope){
+// 	var user = {};
+// 	return user;
+// }]);
+
 craftApp.controller('signupCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
 	$scope.newUser = {};
 	$scope.userSignUp = function() {
@@ -50,6 +55,7 @@ craftApp.controller('loginCtrl', ['$scope', '$http', '$state', function($scope, 
 	$scope.userLogin = function() {
 		return $http.post('/login', $scope.user).then(
 			function success(data){
+				console.log('success data: ', data);
 				$state.transitionTo('allChallenges');
 			},
 			function error(err) {
