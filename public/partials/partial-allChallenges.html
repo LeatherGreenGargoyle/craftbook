@@ -1,3 +1,38 @@
 <div id='allChallenges'>
-	{{data}}
+		<ul>
+			<li ng-repeat='entry in data' ng-click='showEntry(entry)'>{{entry.challenge}}</li>
+		</ul>
+
+	<div id='currentEntry'>
+		<p>Challenge: 
+			<div>
+				{{currentEntry.challenge}}
+			</div>
+		</p>
+
+		<p>Your initial thought process: 
+			<div>
+				{{currentEntry.initialReactions}}
+			</div>
+		</p>
+
+		<p>Your notes: 
+			<div>
+				{{currentEntry.notes}}
+			</div>
+		</p>
+
+		<p>Your solution: 
+			<div>
+				{{currentEntry.mySolution}}
+			</div>
+		</p>
+
+		<p>Your solution process: 
+			<div>
+				{{currentEntry.process}}
+			</div>
+		</p>
+
+	</div>
 </div>

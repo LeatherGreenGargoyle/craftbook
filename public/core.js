@@ -34,10 +34,15 @@ craftApp.controller('allChallengesCtrl', ['$scope', '$http', function($scope, $h
 	$http.get('/entries').then(
 	function(data) {
 		$scope.data = data.data;
+		$scope.currentEntry = $scope.data[0];
 	},
 	function(err) {
 		console.log(err);
 	});
+
+	$scope.showEntry = function(entry){
+		$scope.currentEntry = entry;
+	}
 	
 }]);
 
