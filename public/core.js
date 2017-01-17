@@ -8,6 +8,11 @@ craftApp.config(function($stateProvider, $urlRouterProvider) {
 			url:'/newEntry',
 			templateUrl: './partials/partial-newEntry.html',
 			controller: 'newEntryCtrl'
+		})
+		.state('allChallenges', {
+			url:'/allChallenges',
+			templateUrl:'./partials/partial-allChallenges.html',
+			controller: 'allChallengesCtrl'
 		});
 });
 
@@ -24,3 +29,17 @@ craftApp.controller('newEntryCtrl', ['$scope', '$http', function($scope, $http) 
 				});
 	}
 }]);
+
+craftApp.factory('getEntries', function(){
+	var getEntries = function(){
+		$http.get('/entries').then(
+			function(data) {
+				return data;
+			},
+			function(err) {
+				console.log(err);
+			});
+	}
+
+	return getEntries;
+});
