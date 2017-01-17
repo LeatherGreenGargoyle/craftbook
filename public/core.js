@@ -30,16 +30,14 @@ craftApp.controller('newEntryCtrl', ['$scope', '$http', function($scope, $http) 
 	}
 }]);
 
-craftApp.factory('getEntries', function(){
-	var getEntries = function(){
-		$http.get('/entries').then(
-			function(data) {
-				return data;
-			},
-			function(err) {
-				console.log(err);
-			});
-	}
+craftApp.controller('allChallengesCtrl', ['$scope', '$http', function($scope, $http) {
+	$http.get('/entries').then(
+	function(data) {
+		$scope.data = data.data;
+	},
+	function(err) {
+		console.log(err);
+	});
+	
+}]);
 
-	return getEntries;
-});
