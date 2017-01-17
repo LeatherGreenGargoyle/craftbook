@@ -1,3 +1,7 @@
+a{
+	text-decoration: none;
+}
+
 #bodyContainer{
 	width: 70%;
 	margin: auto;
@@ -18,9 +22,6 @@
 	width: 50%;
 }
 
-a {
-	color: white;
-}
 
 .md-no-sticky{
 	color: gray;

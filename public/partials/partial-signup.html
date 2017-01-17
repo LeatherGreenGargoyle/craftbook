@@ -1,0 +1,15 @@
+<div>
+	<div id='authorize'>Make An Account With Us</div>
+	<md-input-container class='authorize'>
+		<label>username</label>
+		<input ng-model='newUser.username'>	
+	</md-input-container>
+	<md-input-container class='authorize'>
+		<label>password</label>
+		<input ng-model='newUser.password'>	
+	</md-input-container>
+	<md-button class='md-raised' type='submit' ng-click='userSignUp()'>Sign Up</md-button>
+	<p>
+		Or <a ui-sref='login'>log in</a> if you already have an account
+	</p>
+</div>

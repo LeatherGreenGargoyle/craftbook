@@ -1,7 +1,7 @@
 var craftApp = angular.module('craftApp',['ui.router', 'ngMaterial']);
 
 craftApp.config(function($stateProvider, $urlRouterProvider) {
-	$urlRouterProvider.otherwise('/newEntry');
+	$urlRouterProvider.otherwise('/login');
 
 	$stateProvider
 		.state('newEntry', {
@@ -18,8 +18,48 @@ craftApp.config(function($stateProvider, $urlRouterProvider) {
 			url: '/randomChallenge',
 			templateUrl:'./partials/partial-randomChallenge.html',
 			controller: 'randomChallengeCtrl'
+		})
+		.state('signup',{
+			url: '/signup',
+			templateUrl: './partials/partial-signup.html',
+			controller: 'signupCtrl'
+		})
+		.state('login', {
+			url: '/login',
+			templateUrl: './partials/partial-login.html',
+			controller: 'loginCtrl'
 		});
 });
+
+craftApp.controller('signupCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
+	$scope.newUser = {};
+	$scope.userSignUp = function() {
+		$http.post('/signup', $scope.newUser).then(
+			function success(data){
+				console.log(data);
+				$state.go('login');
+			},
+			function error(err) {
+				console.log(err);
+			});
+	}
+}]);
+
+craftApp.controller('loginCtrl', ['$scope', '$http', '$state', function($scope, $http, $state) {
+	$scope.user = {};
+	$scope.userLogin = function() {
+		return $http.post('/login', $scope.user).then(
+			function success(data){
+				$state.transitionTo('allChallenges');
+			},
+			function error(err) {
+				console.log('err: ',err);
+				$scope.error = err;
+			});
+	}
+}]);
+
+craftApp.controller();
 
 craftApp.controller('newEntryCtrl', ['$scope', '$http', function($scope, $http) {
 

@@ -8,19 +8,19 @@ mongoose.connect(dburl, function(){
 var entrySchema = new mongoose.Schema({
 	challenge: String,
 	initialThoughts: String,
-	questions: [{text: String}],
 	notes: String,
 	mySolution: String,
 	process: String
 });
 
-// var dailySummarySchema = new mongoose.Schema({
-// 	date: String,
-// 	yesterday: String,
-// 	TIL: String,
-// 	errors: String
-// });
+var userSchema = new mongoose.Schema({
+	username: String,
+	password: String,
+	entries: [entrySchema]
+});
 
 var Entry = mongoose.model('Entry', entrySchema);
+var User = mongoose.model('User', userSchema);
 
 exports.Entry = Entry;
+exports.User = User;

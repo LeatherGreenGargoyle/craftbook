@@ -25,18 +25,51 @@ app.get('/entries', function(req, res){
 	});
 });
 
+app.post('/signup', function(req, res) {
+
+	db.User.create({
+		username: req.body.username,
+		password: req.body.password,
+		entries: []
+	}, function(err, User) {
+		if(err) {
+			res.send(err);
+		} else {
+			console.log('new User: ', User);
+			res.send(200);
+		}
+	});
+});
+
+app.post('/login', function(req, res) {
+	console.log('login hit, req.body is: ', req.body);
+	db.User.find({username: req.body.username}, function(err, result) {
+		if(err){
+			console.log('login error');
+			res.send(err);
+		} else {
+			console.log('user was found: ', result);
+			if(result.length > 0){
+				if(result[0].password === req.body.password) {
+					// res.json(User);
+					console.log('password match');
+					// res.redirect(200, '/allChallenges');
+					res.json(result);
+				} else {
+					console.log('password doesn\'t match');
+				}
+			} else {
+				res.send(404,'No user/password match');
+			}
+		}
+	});
+});
+
 app.post('/entries', function(req, res) {
-	var reqQs = [];
-	if(req.body.questions && req.body.questions.length){
-		req.body.questions.forEach(function(q){
-			reqQs.push(q);
-		});
-	}
 
 	db.Entry.create({
 		challenge: req.body.challenge,
 		initialThoughts: req.body.initialThoughts,
-		questions: reqQs,
 		notes: req.body.notes,
 		mySolution: req.body.mySolution,
 		process: req.body.process
