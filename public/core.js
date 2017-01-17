@@ -54,13 +54,20 @@ craftApp.controller('allChallengesCtrl', ['$scope', '$http', function($scope, $h
 
 craftApp.controller('randomChallengeCtrl', ['$scope', '$http', function($scope, $http) {
 	$scope.challenge;
+
 	$http.get('/entries').then(
 	function(data) {
-		var randomInd = Math.floor(Math.random() * (data.data.length - 1));
+		console.log('data.data is: ', data.data);
+		var randomInd = Math.floor(Math.random() * (data.data.length));
+		console.log('randomInd is: ', randomInd);
 		$scope.challenge = data.data[randomInd];
 	},
 	function(err) {
 		console.log(err);
 	});
+
+	$scope.revealAnswer = function() {
+		$scope.answer = $scope.challenge.mySolution;
+	}
 
 }]);
