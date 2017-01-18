@@ -93,16 +93,20 @@ craftApp.controller('newEntryCtrl', ['$scope', '$http', 'currentUser', function(
 	}
 }]);
 
-craftApp.controller('allChallengesCtrl', ['$scope', '$http', function($scope, $http) {
+craftApp.controller('allChallengesCtrl', ['$scope', '$http', 'currentUser', function($scope, $http, currentUser) {
 	
-	$http.get('/entries').then(
-	function(data) {
-		$scope.data = data.data;
-		$scope.currentEntry = $scope.data[0];
-	},
-	function(err) {
-		console.log(err);
-	});
+	$scope.entries = currentUser.value.entries;
+	console.log('$scope.entries is: ', $scope.entries);
+	$scope.currentEntry = $scope.entries[0] || {challenge: 'none'};
+
+	// $http.get('/entries').then(
+	// function(data) {
+	// 	$scope.data = data.data;
+	// 	$scope.currentEntry = $scope.data[0];
+	// },
+	// function(err) {
+	// 	console.log(err);
+	// });
 
 	$scope.showEntry = function(entry){
 		$scope.currentEntry = entry;
