@@ -49,13 +49,17 @@ app.post('/login', function(req, res) {
 			res.send(err);
 		} else {
 			console.log('user was found: ', result);
-			if(result.password === req.body.password) {
-				// res.json(User);
-				console.log('password match');
-				// res.redirect(200, '/allChallenges');
-				res.json(result);
+			if(result){
+				if(result.password === req.body.password) {
+					// res.json(User);
+					console.log('password match');
+					// res.redirect(200, '/allChallenges');
+					res.json(result);
+				} else {
+					console.log('password doesn\'t match');
+				}
 			} else {
-				console.log('password doesn\'t match');
+				res.send(404, 'User/password combination not found')
 			}
 		}
 	});
@@ -80,7 +84,7 @@ app.post('/entries', function(req, res) {
 					console.log('user updated: ', result);
 				})
 			});
-			
+
 			db.Entry.find(function(err, data){
 				if(err){
 					res.send(err);

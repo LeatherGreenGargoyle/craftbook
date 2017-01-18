@@ -99,32 +99,17 @@ craftApp.controller('allChallengesCtrl', ['$scope', '$http', 'currentUser', func
 	console.log('$scope.entries is: ', $scope.entries);
 	$scope.currentEntry = $scope.entries[0] || {challenge: 'none'};
 
-	// $http.get('/entries').then(
-	// function(data) {
-	// 	$scope.data = data.data;
-	// 	$scope.currentEntry = $scope.data[0];
-	// },
-	// function(err) {
-	// 	console.log(err);
-	// });
-
 	$scope.showEntry = function(entry){
 		$scope.currentEntry = entry;
 	}
 	
 }]);
 
-craftApp.controller('randomChallengeCtrl', ['$scope', '$http', function($scope, $http) {
+craftApp.controller('randomChallengeCtrl', ['$scope', '$http', 'currentUser', function($scope, $http, currentUser) {
 	$scope.challenge;
-
-	$http.get('/entries').then(
-	function(data) {
-		var randomInd = Math.floor(Math.random() * (data.data.length));
-		$scope.challenge = data.data[randomInd];
-	},
-	function(err) {
-		console.log(err);
-	});
+	console.log('currentUser.value.entries is: ', currentUser.value.entries );
+	var randomInd = Math.floor(Math.random() * (currentUser.value.entries.length));
+	$scope.challenge = currentUser.value.entries[randomInd];
 
 	$scope.revealAnswer = function() {
 		$scope.answer = $scope.challenge.mySolution;
