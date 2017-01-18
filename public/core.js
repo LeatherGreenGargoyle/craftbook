@@ -33,6 +33,9 @@ craftApp.config(function($stateProvider, $urlRouterProvider) {
 
 craftApp.factory('currentUser', function(){
 	var user = {};
+
+	user.value = {};
+
 	return user;
 });
 
@@ -55,8 +58,8 @@ craftApp.controller('loginCtrl', ['$scope', '$http', '$state', 'currentUser', fu
 	$scope.userLogin = function() {
 		return $http.post('/login', $scope.user).then(
 			function success(data){
-				currentUser = data.data;
-				console.log('currentUser is: ', currentUser);
+				currentUser.value = data.data;
+				console.log('Login, currentUser.value is: ', currentUser.value);
 				$state.transitionTo('allChallenges');
 			},
 			function error(err) {
@@ -68,9 +71,13 @@ craftApp.controller('loginCtrl', ['$scope', '$http', '$state', 'currentUser', fu
 
 craftApp.controller();
 
-craftApp.controller('newEntryCtrl', ['$scope', '$http', function($scope, $http) {
+craftApp.controller('newEntryCtrl', ['$scope', '$http', 'currentUser', function($scope, $http, currentUser) {
 
 	$scope.saveEntry = function() {
+		console.log('SAVED ENTRY');
+		console.log('currentUser.value is: ', currentUser.value);
+		console.log('currentUser.value._id is: ', currentUser.value._id);
+		$scope.entryObj.currentUser = currentUser.value._id;
 		$http.post('/entries', $scope.entryObj)
 			.then(
 				function(data) {
@@ -108,9 +115,7 @@ craftApp.controller('randomChallengeCtrl', ['$scope', '$http', function($scope, 
 
 	$http.get('/entries').then(
 	function(data) {
-		console.log('data.data is: ', data.data);
 		var randomInd = Math.floor(Math.random() * (data.data.length));
-		console.log('randomInd is: ', randomInd);
 		$scope.challenge = data.data[randomInd];
 	},
 	function(err) {

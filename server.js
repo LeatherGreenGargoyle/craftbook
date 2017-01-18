@@ -62,7 +62,7 @@ app.post('/login', function(req, res) {
 });
 
 app.post('/entries', function(req, res) {
-
+	console.log('req.body.currentUser is: ', req.body.currentUser);
 	db.Entry.create({
 		challenge: req.body.challenge,
 		initialThoughts: req.body.initialThoughts,
@@ -73,6 +73,14 @@ app.post('/entries', function(req, res) {
 		if(err){
 			res.send(err);
 		} else {
+			db.User.findOne({_id: req.body.currentUser.toString()}, function(err, result) {
+				result.entries.push(Entry);
+				result.save(function(err) {
+					if(err) return handleError(err);
+					console.log('user updated: ', result);
+				})
+			});
+			
 			db.Entry.find(function(err, data){
 				if(err){
 					res.send(err);
