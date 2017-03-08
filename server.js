@@ -3,6 +3,9 @@ var morgan = require('morgan');
 var db = require('./database');
 var bodyParser = require('body-parser');
 var path = require('path');
+var passport = require('passport');
+var Strategy = require('passport-local').Strategy;
+var express = require('express');
 
 var app = express();
 app.set('port', 3000);
